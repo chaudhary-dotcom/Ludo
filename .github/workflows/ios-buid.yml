@@ -1,0 +1,44 @@
+name: "Build iOS IPA"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-ios:
+    runs-on: macos-14
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Download Godot Engine
+        run: |
+          curl -L -o godot.zip https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_macos.universal.zip
+          unzip godot.zip
+          mkdir -p /Applications/Godot.app
+          mv Godot.app /Applications/
+
+      - name: Download Export Templates
+        run: |
+          curl -L -o templates.tpz https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz
+          unzip templates.tpz
+          mkdir -p ~/Library/Application\ Support/Godot/export_templates/4.3.stable
+          mv templates/* ~/Library/Application\ Support/Godot/export_templates/4.3.stable/
+
+      - name: Export Xcode Project
+        run: |
+          mkdir -p ios_build
+          /Applications/Godot.app/Contents/MacOS/Godot --headless --export-debug "iOS" ios_build/Ludo.xcodeproj
+
+      - name: Compile Xcode Project to IPA
+        run: |
+          cd ios_build
+          xcodebuild -project Ludo.xcodeproj -scheme Ludo -sdk iphoneos -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO build
+          mkdir -p Payload
+          cp -r build/Debug-iphoneos/Ludo.app Payload/
+          zip -r Ludo.ipa Payload
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ludo-iOS-IPA
+          path: ios_build/Ludo.ipa
