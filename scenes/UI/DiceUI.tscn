@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://45hcq185rh5q"]
+
+[ext_resource type="Script" uid="uid://bxifr3e6kas8x" path="res://scenes/UI/dice_ui.gd" id="1_dbva1"]
+
+[node name="DiceUI" type="Control" unique_id=745203503]
+custom_maximum_size = Vector2(220, 280)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_dbva1")

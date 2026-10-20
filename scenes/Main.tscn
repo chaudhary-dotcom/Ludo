@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dvy5kn0hl4ojy"]
+
+[ext_resource type="Script" uid="uid://cds7d0cnbdqw2" path="res://scripts/Main.gd" id="1_0bbpv"]
+[ext_resource type="PackedScene" uid="uid://45hcq185rh5q" path="res://scenes/UI/DiceUI.tscn" id="1_rvslj"]
+[ext_resource type="Script" uid="uid://dwm4pfrukxh11" path="res://scripts/GameManager.gd" id="3_rarhs"]
+
+[node name="Main" type="Node2D" unique_id=939223738]
+script = ExtResource("1_0bbpv")
+
+[node name="DiceUI" parent="." unique_id=745203503 instance=ExtResource("1_rvslj")]
+custom_minimum_size = Vector2(200, 250)
+offset_left = 395.00006
+offset_top = 327.50003
+offset_right = 395.00006
+offset_bottom = 327.50003
+
+[node name="GameManager" type="Node" parent="." unique_id=304091966]
+script = ExtResource("3_rarhs")

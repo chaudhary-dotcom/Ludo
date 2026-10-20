@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://j8vhpl8nw1h"
+path="res://.godot/imported/intro_sound_4.21_sec.mp3-15f726a210a39085c07afdcd99d4f2ca.mp3str"
+
+[deps]
+
+source_file="res://audio/default/intro sound/intro_sound_4.21_sec.mp3"
+dest_files=["res://.godot/imported/intro_sound_4.21_sec.mp3-15f726a210a39085c07afdcd99d4f2ca.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
